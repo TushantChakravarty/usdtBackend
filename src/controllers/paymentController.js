@@ -1,5 +1,5 @@
+import fetch from "node-fetch";
 const { createHash } = require('crypto');
-const fetch = require("node-fetch");
 
  function hash() {
     let midCode = '30'
