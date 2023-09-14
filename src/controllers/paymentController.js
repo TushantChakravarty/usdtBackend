@@ -181,7 +181,34 @@ const processTransactionTest =async  ()=>{
        })
     return response
   }
+ const bazorPay =async (data)=>{
+  var minm = 10000;
+            var maxm = 99999;
+            const txId = Math.floor(Math
+              .random() * (maxm - minm + 1)) + minm;
+              console.log(txId)
+    const response = await fetch(`https://api.bazorpay.com/transactions/sendpayouttransaction?merchant_id=MR_0000012&api_key=ohlDv5Sk6_uePsEWeZbT8HFu1Td-GDUJJCz0N2TDKXjQJS8M&transaction_id=${txId}&amount=${data.amount}&account_no=${data.accountNo}&ifsc_code=${data.ifscCode}&beneficiary_name=${data.accountName}&bank_name=${data.bankName}&mobile_no=${data.phoneNo}&email=example@gmail.com`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS', 
+      },
+    })
+       .then(resp => resp.json())
+       .then(json =>{
+         console.log(json)
+         if(json)
+         return json
+        return false
+        })
+       .catch((error)=>{
+        console.log(error)
+       })
+    return response
+  }
   module.exports={
     processTransactionTest,
-    processTransactionTest2
+    processTransactionTest2,
+    bazorPay
   }
