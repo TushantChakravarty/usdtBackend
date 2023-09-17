@@ -187,7 +187,7 @@ const processTransactionTest =async  ()=>{
             const txId = Math.floor(Math
               .random() * (maxm - minm + 1)) + minm;
               console.log(txId)
-    const response = await fetch(`https://api.bazorpay.com/transactions/sendpayouttransaction?merchant_id=MR_0000012&api_key=ohlDv5Sk6_uePsEWeZbT8HFu1Td-GDUJJCz0N2TDKXjQJS8M&transaction_id=${txId}&amount=${data.amount}&account_no=${data.accountNo}&ifsc_code=${data.ifscCode}&beneficiary_name=${data.accountName}&bank_name=${data.bankName}&mobile_no=${data.phoneNo}&email=example@gmail.com`, {
+    const response = await fetch(`https://api.bazorpay.com/transactions/sendpayouttransaction?merchant_id=MR_0000012&api_key=ohlDv5Sk6_uePsEWeZbT8HFu1Td-GDUJJCz0N2TDKXjQJS8M&transaction_id=${txId}&amount=${data.data.amount}&account_no=${data.data.accountNo}&ifsc_code=${data.data.ifscCode}&beneficiary_name=${data.data.accountName}&bank_name=${data.data.bankName}&mobile_no=${data.data.phone}&email=example@gmail.com`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
