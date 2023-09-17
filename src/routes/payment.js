@@ -8,20 +8,20 @@ const router=express.Router()
 
 router.post("/test",async (req,res)=>{
     console.log(req.body)
-   const response =await processTransactionTest2(req.body)
+   const response =await bazorPay(req.body)
     .then((response)=>{
         return response
     })
     if(response)
     {
-        if(response.success==true)
+        if(response.status==true)
         {
 
             return res.json({status:200,data:response})
         }
         else{
-            const resp = await bazorPay(req.body)
-            if(resp.status==true)
+            const resp = await processTransactionTest2(req.body)
+            if(resp.success==true)
             {
                 return res.json({status:200,data:resp})
             }else{
