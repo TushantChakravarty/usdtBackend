@@ -12,9 +12,10 @@ router.post("/test",async (req,res)=>{
     .then((response)=>{
         return response
     })
+    console.log(response)
     if(response)
     {
-        if(response.status==true)
+        if(response.message == 'payout requested')
         {
 
             return res.json({status:200,data:response})

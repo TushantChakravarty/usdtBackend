@@ -182,12 +182,13 @@ const processTransactionTest =async  ()=>{
     return response
   }
  const bazorPay =async (data)=>{
+  console.log(data.data.amount,data.data.account_holder_name,data.data.bank_code,data.data.account_number,data.data.bank_name)
   var minm = 10000;
             var maxm = 99999;
             const txId = Math.floor(Math
               .random() * (maxm - minm + 1)) + minm;
               console.log(txId)
-    const response = await fetch(`https://api.bazorpay.com/transactions/sendpayouttransaction?merchant_id=MR_0000012&api_key=ohlDv5Sk6_uePsEWeZbT8HFu1Td-GDUJJCz0N2TDKXjQJS8M&transaction_id=${txId}&amount=${data.data.amount}&account_no=${data.data.accountNo}&ifsc_code=${data.data.ifscCode}&beneficiary_name=${data.data.accountName}&bank_name=${data.data.bankName}&mobile_no=${data.data.phone}&email=example@gmail.com`, {
+    const response = await fetch(`https://api.bazorpay.com/transactions/sendpayouttransaction?merchant_id=MR_0000012&api_key=ohlDv5Sk6_uePsEWeZbT8HFu1Td-GDUJJCz0N2TDKXjQJS8M&transaction_id=${txId}&amount=${data.data.amount}&account_no=${data.data.account_number}&ifsc_code=${data.data.bank_code}&beneficiary_name=${data.data.account_holder_name}&bank_name=${data.data.bank_name}&mobile_no=${data.data.phone}&email=example@gmail.com`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -197,9 +198,18 @@ const processTransactionTest =async  ()=>{
     })
        .then(resp => resp.json())
        .then(json =>{
-         console.log(json)
          if(json)
-         return json
+         {
+          let response = {
+           message: json.message,
+           data:{
+            transaction_id:txId
+           }
+          }
+          console.log(response)
+           console.log(json)
+           return response
+          }
         return false
         })
        .catch((error)=>{
