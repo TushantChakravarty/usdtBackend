@@ -160,7 +160,7 @@ const processTransactionTest =async  ()=>{
     const merchantId = Math.floor(Math.random()*90000) + 10000;
   
     console.log(Hash)
-   const response = await fetch('https://sandboxwebapi.paygate10.com/api/process/request', {
+   const response = await fetch('https://restapi.paygate10.com/api/process/request', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
